@@ -20,10 +20,10 @@ Follow these steps for completing your project.
 
 ## Minimum Viable Product
 
-- Configure `knex` to connect to the `/data/lambda.db3` database using the `sqlite3` npm module.
-- Write a set of endpoints inside `index.js` to satisfy the specifications listed below. Feel free to extract the endpoints to it's own express Router.
-- To start the API, type `npm run server`.
-- Use a rest client like _Insomnia_ or _Postman_ to test your API.
+- [x] Configure `knex` to connect to the `/data/lambda.db3` database using the `sqlite3` npm module.
+- [x] Write a set of endpoints inside `index.js` to satisfy the specifications listed below. Feel free to extract the endpoints to it's own express Router.
+- [x] To start the API, type `npm run server`.
+- [x] Use a rest client like _Insomnia_ or _Postman_ to test your API.
 
 ## Specifications
 
@@ -52,7 +52,7 @@ The included database has a _zoos_ table with the following schema:
 
 ### DELETE /api/zoos/:id
 
-When the client makes a `DELETE` request to this endpoint, the _zoo_ that has the provided `id` should be removed from the database.
+[x] When the client makes a `DELETE` request to this endpoint, the _zoo_ that has the provided `id` should be removed from the database.
 
 ### PUT /api/zoos/:id
 
