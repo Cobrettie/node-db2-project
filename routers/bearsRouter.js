@@ -8,6 +8,20 @@ function logError(err) {
   console.log('Error: ', err)
 }
 
+router.post('/', async (req, res) => {
+  try {
+    const postBear = await knex('bears').insert(req.body);
+    if (postBear) {
+      res.status(201).json(postBear)
+    } 
+  } catch (err) {
+    logError(err);
+    res.status(500).json({
+      errorMessage: 'Could not add bear'
+    })
+  }
+})
+
 router.get('/', async (req, res) => {
   try {
     const bears = await knex('bears');
@@ -17,7 +31,7 @@ router.get('/', async (req, res) => {
       null
     }
   } catch (err) {
-
+    logError(err);
   }
 })
 
