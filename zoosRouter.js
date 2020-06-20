@@ -57,8 +57,26 @@ router.get('/:id', async (req, res) => {
   }
 })
 
-router.put('/:id', (req, res) => {
-  
+router.put('/:id', async (req, res) => {
+  const {id} = req.params;
+  const updatedZoo = req.body;
+  try {
+    await knex('zoos').where({id: id}).update(updatedZoo)
+      .then((response) => {
+        res.status(201).json(response)
+      })
+      .catch(err => {
+        console.log('Error: ', err);
+        res.status(404).json({
+          errorMessage: 'Invalid ID'
+        })
+      })
+  } catch (err) {
+    console.log('Error: ', err);
+    res.status(500).json({
+      errorMessage: 'Could not update zoo'
+    })
+  }
 })
 
 router.delete('/:id', (req, res) => {

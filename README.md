@@ -48,7 +48,7 @@ The included database has a _zoos_ table with the following schema:
 
 ### `GET /api/zoos/:id`
 
-When the client makes a `GET` request to `/api/zoos/:id`, find and return the _zoo_ associated with the given `id` or an HTTP status code `404` and a helpful message if no zoo with that `id` exists. Remember to handle errors and send the correct status code.
+[x] When the client makes a `GET` request to `/api/zoos/:id`, find and return the _zoo_ associated with the given `id` or an HTTP status code `404` and a helpful message if no zoo with that `id` exists. Remember to handle errors and send the correct status code.
 
 ### DELETE /api/zoos/:id
 
