@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
       errorMessage: 'Name field required'
     })
   }
-  
+
   try {
     await knex('zoos').insert(req.body)
       .then(addedZooId => {
@@ -39,14 +39,13 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-
   try {
-  const {id} = req.params;
+    const {id} = req.params;
     const zoo = await knex('zoos').where({id: id}).first()
-    if (id) {
+    if (zoo) {
       res.status(201).json(zoo)
     } else {
-      res.status(400).json({
+      res.status(404).json({
         errorMessage: "Invalid ID"
       })
     }

@@ -36,15 +36,15 @@ The included database has a _zoos_ table with the following schema:
 
 ### `POST /api/zoos`
 
-When the client makes a `POST` request to this endpoint, a new _zoo_ should be created in the _zoos_ table.
+[x] When the client makes a `POST` request to this endpoint, a new _zoo_ should be created in the _zoos_ table.
 
-Ensure the client passes a `name` property in the request body. If there's an error, respond with an appropriate status code, and send a JSON response of the form `{ error: "Some useful error message" }`.
+[x] Ensure the client passes a `name` property in the request body. If there's an error, respond with an appropriate status code, and send a JSON response of the form `{ error: "Some useful error message" }`.
 
-Return the inserted zoo and a 201 status code.
+[x] Return the inserted zoo and a 201 status code.
 
 ### `GET /api/zoos`
 
-When the client makes a `GET` request to this endpoint, return a list of all the _zoos_ in the database. Remember to handle any errors and return the correct status code.
+[x] When the client makes a `GET` request to this endpoint, return a list of all the _zoos_ in the database. Remember to handle any errors and return the correct status code.
 
 ### `GET /api/zoos/:id`
 
