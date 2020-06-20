@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
   } catch (err) {
     logError(err);
     res.status(500).json({
-      errorMessage: 'Could not add bear'
+      errorMessage: 'Server error, could not add bear'
     })
   }
 })
@@ -49,7 +49,7 @@ router.get('/:id', async (req, res) => {
   } catch (err) {
     logError(err)
     res.status(500).json({
-      errorMessage: 'Could not retrieve bear'
+      errorMessage: 'Server error, could not retrieve bear'
     })
   }
 })
@@ -70,7 +70,28 @@ router.put('/:id', async (req, res) => {
   } catch (err) {
     logError(err);
     res.status(500).json({
-      errorMessage: 'Could not update bear'
+      errorMessage: 'Server error, could not update bear'
+    })
+  }
+})
+
+router.delete('/:id', async (req, res) => {
+  try {
+    const {id} = req.params;
+    const deleted = await knex('bears').where({id: id}).del()
+    if (deleted) {
+      res.status(200).json({
+        message: 'Deleted bear'
+      })
+    } else {
+      res.status(404).json({
+        errorMessage: 'Invalid id'
+      })
+    }
+  } catch (err) {
+    logError(err);
+    res.status(500).json({
+      errorMessage: 'Server error, could not delete bear'
     })
   }
 })
