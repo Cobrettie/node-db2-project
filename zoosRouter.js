@@ -59,18 +59,15 @@ router.get('/:id', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
   const {id} = req.params;
-  const updatedZoo = req.body;
   try {
-    await knex('zoos').where({id: id}).update(updatedZoo)
-      .then((response) => {
-        res.status(201).json(response)
+    const zoo = await knex('zoos').where({id: id}).update(req.body)
+    if (zoo) {
+      res.status(201).json(zoo)
+    } else {
+      res.status(404).json({
+        errorMessage: 'Ensure all fields are correct'
       })
-      .catch(err => {
-        console.log('Error: ', err);
-        res.status(404).json({
-          errorMessage: 'Invalid ID'
-        })
-      })
+    }
   } catch (err) {
     console.log('Error: ', err);
     res.status(500).json({
@@ -79,8 +76,23 @@ router.put('/:id', async (req, res) => {
   }
 })
 
-router.delete('/:id', (req, res) => {
-  
+router.delete('/:id', async (req, res) => {
+  const {id} = req.params;
+  try {
+    const zoo = await knex('zoos').where({id: id}).del();
+    if (zoo) {
+      res.status(200).json(zoo)
+    } else {
+      res.status(404).json({
+        errorMessage: 'Invalid ID'
+      })
+    }
+  } catch (err) {
+    console.log('Error: ', err);
+    res.status(500).json({
+      errorMessage: 'Could not delete zoo'
+    })
+  }
 })
 
 module.exports = router;
