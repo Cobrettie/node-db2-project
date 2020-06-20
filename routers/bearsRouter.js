@@ -54,4 +54,25 @@ router.get('/:id', async (req, res) => {
   }
 })
 
+router.put('/:id', async (req, res) => {
+  try {
+    const {id} = req.params;
+    const updateBear = await knex('bears').where({id: id}).update(req.body);
+    if (updateBear) {
+      res.status(201).json({
+        message: 'Bear updated'
+      })
+    } else {
+      res.status(404).json({
+        errorMessage: 'Invalid Id'
+      })
+    }
+  } catch (err) {
+    logError(err);
+    res.status(500).json({
+      errorMessage: 'Could not update bear'
+    })
+  }
+})
+
 module.exports = router;
