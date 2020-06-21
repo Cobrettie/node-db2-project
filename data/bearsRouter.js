@@ -1,6 +1,7 @@
 const express = require('express');
 
-const knex = require('../data/dbConfig');
+const knex = require('./dbConfig');
+const Bears = require('../data/helpers/bearsModel');
 
 const router = express.Router();
 
@@ -22,18 +23,23 @@ router.post('/', async (req, res) => {
   }
 })
 
-router.get('/', async (req, res) => {
-  try {
-    const bears = await knex('bears');
-    if (bears) {
-      res.status(200).json(bears)
-    } else {
-      null
-    }
-  } catch (err) {
-    logError(err);
-  }
+router.get('/:id', async (req, res) => {
+  await const bear = Bears.get(req.params.id);
+  res.status(200).json({bear})
 })
+
+// router.get('/', async (req, res) => {
+//   try {
+//     const bears = await knex('bears');
+//     if (bears) {
+//       res.status(200).json(bears)
+//     } else {
+//       null
+//     }
+//   } catch (err) {
+//     logError(err);
+//   }
+// })
 
 router.get('/:id', async (req, res) => {
   try {
